@@ -30,6 +30,4 @@ public class User {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     List<Requisition> requisitions = new ArrayList<>();
-
-
 }

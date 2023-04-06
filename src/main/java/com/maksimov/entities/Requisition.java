@@ -28,4 +28,12 @@ public class Requisition {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public Requisition(Requisition requisition) {
+        this.id = requisition.getId();
+        this.txt = requisition.getTxt();
+        this.localDateTime = requisition.getLocalDateTime();
+        this.requisitionStates = requisition.getRequisitionStates();
+        this.user = requisition.getUser();
+    }
 }

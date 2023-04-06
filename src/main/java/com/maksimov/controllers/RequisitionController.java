@@ -26,8 +26,7 @@ public class RequisitionController {
     /**
      * Создание заявки авторизованным пользователем(USER)
      *
-     * @param txt
-     * @param authentication
+     * @param txt-текст заявки
      * @return
      */
     @PostMapping("/createRequisition")
@@ -46,7 +45,6 @@ public class RequisitionController {
      * (как от самой старой к самой новой, так и наоборот)(USER)
      *
      * @param typeOfSort-параметр сортировки 1-прямая, 2 обратная
-     * @param authentication
      * @return
      */
     @GetMapping("/listOfRequisitionsForUser")
@@ -63,9 +61,8 @@ public class RequisitionController {
     /**
      * редактировать созданные им заявки в статусе «черновик»(USER)
      *
-     * @param idR-id         заявки
+     * @param idR-id  заявки
      * @param txtEdit
-     * @param authentication
      * @return
      */
     @PutMapping("/editRequisition")
@@ -82,8 +79,7 @@ public class RequisitionController {
     /**
      * отправлять заявки на рассмотрение оператору.(USER)
      *
-     * @param idR-id         заявки
-     * @param authentication
+     * @param idR-id заявки
      * @return
      */
     @PutMapping("/sendRequisition")
@@ -122,7 +118,7 @@ public class RequisitionController {
      * возможностью сортировки по дате создания в оба направления (как от самой старой к
      * самой новой, так и наоборот)(OPERATOR)
      *
-     * @param nameOrSubName
+     * @param nameOrSubName-имя   или часть имени
      * @param typeOfSort-параметр сортировки 1-прямая, 2 обратная
      * @return
      */

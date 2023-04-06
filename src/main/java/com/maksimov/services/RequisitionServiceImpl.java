@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Transactional
 public class RequisitionServiceImpl implements RequisitionService {
-
     private RequisitionRepository requisitionRepository;
     private UserRepository userRepository;
 
@@ -89,7 +89,7 @@ public class RequisitionServiceImpl implements RequisitionService {
                         findRequisitionsByRequisitionStatesOrderByLocalDateTimeDesc(RequisitionStates.SENT);
         }
         if (requisitions != null && requisitions.size() != 0) {
-            modListRequisition(requisitions);
+            requisitions = modListRequisition(requisitions);
         }
         return requisitions;
     }
@@ -109,7 +109,7 @@ public class RequisitionServiceImpl implements RequisitionService {
                         findRequisitionsByUserAndRequisitionStatesOrderByLocalDateTimeDesc(user, RequisitionStates.SENT);
         }
         if (requisitions != null && requisitions.size() != 0) {
-            modListRequisition(requisitions);
+            requisitions = modListRequisition(requisitions);
         }
         return requisitions;
     }
@@ -141,11 +141,14 @@ public class RequisitionServiceImpl implements RequisitionService {
         return requisition;
     }
 
-    private void modListRequisition(List<Requisition> requisitions) {
+    private List<Requisition> modListRequisition(List<Requisition> requisitions) {
+        List<Requisition> requisitionsNew = new ArrayList<>();
         for (Requisition requisition : requisitions) {
-            requisition.setTxt(modTxt(requisition.getTxt()));
+            Requisition requisitionNew = new Requisition(requisition);
+            requisitionNew.setTxt(modTxt(requisition.getTxt()));
+            requisitionsNew.add(requisitionNew);
         }
-
+        return requisitionsNew;
     }
 
     private String modTxt(String txt) {
